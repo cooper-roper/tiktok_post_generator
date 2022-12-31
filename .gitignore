@@ -1,3 +1,13 @@
+# Project level paths to ignore 
+.env
+bin
+setup_notes.txt
+mp3_downloads/*
+subtitles/*
+videos/*
+final_videos/*
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
