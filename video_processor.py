@@ -15,10 +15,10 @@ def audio_on_video(title, video_file, start):
 		video_file = video_processor.random_video()
 
 	# load the audio
-	audio_clip = AudioFileClip(f"mp3_downloads/{title}.mp3")
+	audio_clip = AudioFileClip(f"data/mp3_downloads/{title}.mp3")
 
 	# load the video
-	video_clip = VideoFileClip(f"videos/{video_file}")
+	video_clip = VideoFileClip(f"data/videos/{video_file}")
 
 	subtitles = subtitle_handler(title, video_clip.size)
 
@@ -35,7 +35,7 @@ def audio_on_video(title, video_file, start):
 	final_clip = CompositeVideoClip([clipped, subtitles.set_position(('center'))])
 
 	#create video
-	final_clip.write_videofile(f"final_video/{title}.mp4", 
+	final_clip.write_videofile(f"data/final_video/{title}.mp4", 
                      codec='libx264', 
                      audio_codec='aac', 
                      temp_audiofile='temp-audio.m4a', 
@@ -48,13 +48,13 @@ def subtitle_handler(audio_clip, size):
 
 	#generating closed caption file (srt file)
 	leopard = pvleopard.create(access_key=os.getenv('LEOPARD_ACCESS_KEY'))
-	transcript, words = leopard.process_file(f"mp3_downloads/{audio_clip}.mp3")
+	transcript, words = leopard.process_file(f"data/mp3_downloads/{audio_clip}.mp3")
 
-	with open(f'subtitles/{audio_clip}.srt', 'w') as f:
+	with open(f'data/subtitles/{audio_clip}.srt', 'w') as f:
 		f.write(to_srt(words))
 
 	generator = lambda txt: TextClip(txt, font='Helvetica', fontsize=72, color='white', size = size, method='caption')
-	subtitles = SubtitlesClip(f'subtitles/{audio_clip}.srt', generator) 
+	subtitles = SubtitlesClip(f'data/subtitles/{audio_clip}.srt', generator) 
 
 	return subtitles
 
@@ -99,7 +99,7 @@ def to_srt(
 
 def random_video():
 
-	video_file = random.choice(os.listdir("videos")) #change dir name to whatever
+	video_file = random.choice(os.listdir("data/videos")) #change dir name to whatever
 
 	print(f"Using {video_file}\n")
 

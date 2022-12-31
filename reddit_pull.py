@@ -17,7 +17,7 @@ def praw_oauth():
 
 def reddit_main(subreddits, limit):
 	
-	load_dotenv()
+	# load_dotenv()
 	
 	reddit = praw_oauth()
 
