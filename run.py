@@ -20,6 +20,7 @@ def parser_init():
     parser.add_argument("-l", "--limit", help="how many posts per subreddit", default=1, type=int)
     parser.add_argument("-v", "--video-file", help="Target video file")
     parser.add_argument("-s", "--start", help="Start duration of the audio file, default is 0", type=int)
+    parser.add_argument("-k", "--keep-files", help="Keep temporary files created during video generation process that would otherwise be deleted", type=bool, default=False)
 
 
 # Process user input, return help message if input is invalid
@@ -34,7 +35,7 @@ def input_handler():
         return parser.parse_args()
     
 
-def post_convert(posts, video_file, start):
+def post_convert(posts, video_file, start, keep=False):
     for post in posts:
         # Title and body of post
         mp3 = str(post.title)
@@ -51,8 +52,9 @@ def post_convert(posts, video_file, start):
         video_title = video.audio_on_video(mp3, video_file, start)
 
         # Delete mp3
-        os.remove(f"data/audio/{mp3}.mp3")
-        os.remove(f"data/subtitles/{mp3}.srt")
+        if not keep:
+            os.remove(f"data/audio/{mp3}.mp3")
+            os.remove(f"data/subtitles/{mp3}.srt")
 
         #upload.run(video_title)
 
@@ -60,4 +62,4 @@ def post_convert(posts, video_file, start):
 if __name__ == '__main__':
     args         = input_handler()
     posts        = reddit.post_pull(args.subreddits, args.limit)  
-    video_object = post_convert(posts, args.video_file, args.start)
+    video_object = post_convert(posts, args.video_file, args.start, args.keep_files)
