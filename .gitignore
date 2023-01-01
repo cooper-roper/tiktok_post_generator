@@ -7,8 +7,11 @@ setup_notes.txt
 ## Media formats
 *.mp4
 *.mov
+*.mkv
 *.srt
 *.mp3
+*.m4a
+*.wav
 
 
 # Byte-compiled / optimized / DLL files

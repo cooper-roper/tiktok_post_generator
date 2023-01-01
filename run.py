@@ -2,7 +2,7 @@ import os
 import re
 import sys
 import argparse
-import reddit_pull, audio, video
+import reddit, audio, video
 
 #import upload
 
@@ -13,7 +13,6 @@ video_file = None
 start = None
 
 def arg_handler():
-    
     parser = argparse.ArgumentParser(description="Python script automate tiktok posts")
     parser.add_argument("-r", "--subreddits", type=str, nargs='+', help='subreddits to be used')
     parser.add_argument("-l", "--limit", help="how many posts per subreddit", default=1, type=int)
@@ -67,7 +66,7 @@ def main():
 
     args = arg_handler()
     
-    posts = reddit_pull.reddit_main(args[0], args[1])  
+    posts = reddit.reddit_main(args[0], args[1])  
 
     video_object = post_convert(posts, args[2], args[3])
 
