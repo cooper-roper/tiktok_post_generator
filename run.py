@@ -52,7 +52,7 @@ def post_convert(posts, video_file, start):
         audio.tts(mp3, selftext)
 
         #create video
-        video_title = audio_on_video(mp3, video_file, start)
+        video_title = video.audio_on_video(mp3, video_file, start)
 
         #delete mp3
         os.remove(f"data/audio/{mp3}.mp3")

@@ -1,5 +1,6 @@
 from gtts import gTTS
 import re
+import os
 
 def tts(title, selftext):
 
@@ -14,8 +15,8 @@ def tts(title, selftext):
 	selftext = selftext.replace("_", " ")
 	  
 	myobj = gTTS(text=selftext, lang=language, slow=False)
-	  
-	myobj.save(f"data/audio/{title}.mp3")
+	
+	myobj.save(f"{os.getcwd()}/data/audio/{title}.mp3")
 
 	print("Success\n")
 

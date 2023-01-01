@@ -14,7 +14,7 @@ def audio_on_video(title, video_file, start):
 		video_file = random_video()
 
 	# load the audio
-	audio_clip = AudioFileClip(f"data/mp3_downloads/{title}.mp3")
+	audio_clip = AudioFileClip(f"data/audio/{title}.mp3")
 
 	# load the video
 	video_clip = VideoFileClip(f"data/videos/{video_file}")
@@ -35,10 +35,10 @@ def audio_on_video(title, video_file, start):
 
 	#create video
 	final_clip.write_videofile(f"data/final_videos/{title}.mp4", 
-                     codec='libx264', 
-                     audio_codec='aac', 
-                     temp_audiofile='temp-audio.m4a', 
-                     remove_temp=True)
+					 codec='libx264', 
+					 audio_codec='aac', 
+					 temp_audiofile=f"data/audio/temp-audio.m4a",
+					 remove_temp=True)
 
 	print(f"{title} now available\n")
 
@@ -58,47 +58,49 @@ def subtitle_handler(audio_clip, size):
 	return subtitles
 
 def second_to_timecode(x: float) -> str:
-    hour, x = divmod(x, 3600)
-    minute, x = divmod(x, 60)
-    second, x = divmod(x, 1)
-    millisecond = int(x * 1000.)
+	hour, x = divmod(x, 3600)
+	minute, x = divmod(x, 60)
+	second, x = divmod(x, 1)
+	millisecond = int(x * 1000.)
 
-    return '%.2d:%.2d:%.2d,%.3d' % (hour, minute, second, millisecond)
+	return '%.2d:%.2d:%.2d,%.3d' % (hour, minute, second, millisecond)
 
 def to_srt(
-        words: Sequence[pvleopard.Leopard.Word],
-        endpoint_sec: float = 1.,
-        length_limit: Optional[int] = 16) -> str:
-    def _helper(end: int) -> None:
-        lines.append("%d" % section)
-        lines.append(
-            "%s --> %s" %
-            (
-                second_to_timecode(words[start].start_sec),
-                second_to_timecode(words[end].end_sec)
-            )
-        )
-        lines.append(' '.join(x.word for x in words[start:(end + 1)]))
-        lines.append('')
+		words: Sequence[pvleopard.Leopard.Word],
+		endpoint_sec: float = 1.,
+		length_limit: Optional[int] = 16) -> str:
+	def _helper(end: int) -> None:
+		lines.append("%d" % section)
+		lines.append(
+			"%s --> %s" %
+			(
+				second_to_timecode(words[start].start_sec),
+				second_to_timecode(words[end].end_sec)
+			)
+		)
+		lines.append(' '.join(x.word for x in words[start:(end + 1)]))
+		lines.append('')
 
-    lines = list()
-    section = 0
-    start = 0
-    for k in range(1, len(words)):
-        if ((words[k].start_sec - words[k - 1].end_sec) >= endpoint_sec) or \
-                (length_limit is not None and (k - start) >= length_limit):
-            _helper(k - 1)
-            start = k
-            section += 1
-    _helper(len(words) - 1)
+	lines = list()
+	section = 0
+	start = 0
+	for k in range(1, len(words)):
+		if ((words[k].start_sec - words[k - 1].end_sec) >= endpoint_sec) or \
+				(length_limit is not None and (k - start) >= length_limit):
+			_helper(k - 1)
+			start = k
+			section += 1
+	_helper(len(words) - 1)
 
-    return '\n'.join(lines)
+	return '\n'.join(lines)
 
 
 
 def random_video():
-
-	video_file = random.choice(os.listdir("data/videos")) #change dir name to whatever
+	videos = os.listdir("data/videos")
+	videos.remove('README.md')
+	
+	video_file = random.choice(videos) #change dir name to whatever
 
 	print(f"Using {video_file}\n")
 
