@@ -27,7 +27,7 @@ def run(tiktok):
     # ================================================================
     # Here is the path of the video that you want to upload in tiktok.
     # Plese edit the path because this is different to everyone.
-    upload(f"final_video{tiktok}.mp4")
+    upload(f"data/final_video/{tiktok}.mp4")
     # ================================================================
 
 

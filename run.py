@@ -49,10 +49,10 @@ def post_convert(posts, video_file, start):
         video_title = video_processor.audio_on_video(mp3, video_file, start)
 
         #delete mp3
-        os.remove(f"mp3_downloads/{mp3}.mp3")
-        os.remove(f"subtitles/{mp3}.srt")
+        os.remove(f"data/mp3_downloads/{mp3}.mp3")
+        os.remove(f"data/subtitles/{mp3}.srt")
 
-        #upload.run(f"final_video/{video_title}.mp4")
+        #upload.run(video_title)
 
         
 
