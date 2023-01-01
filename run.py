@@ -1,6 +1,7 @@
 import os
-import argparse
 import re
+import sys
+import argparse
 import reddit_pull, audio, video_processor
 
 #import upload
@@ -20,6 +21,11 @@ def arg_handler():
     parser.add_argument("-s", "--start", help="Start duration of the audio file, default is 0", type=int)
     
     args = parser.parse_args()
+
+    # If no input is provided, display the 'help' output and quit
+    if len(sys.argv) == 1:
+        parser.print_help(sys.stderr)
+        sys.exit(1)
 
     subreddits = args.subreddits
     limit = args.limit
