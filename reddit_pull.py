@@ -1,6 +1,7 @@
 import os
 import praw
 from dotenv import load_dotenv
+from settings import dotenv_path
 
 # returns a  praw.Reddit object
 def praw_oauth():
@@ -17,7 +18,7 @@ def praw_oauth():
 
 def reddit_main(subreddits, limit):
 	
-	load_dotenv()
+	load_dotenv(dotenv_path)
 	
 	reddit = praw_oauth()
 

@@ -1,0 +1,18 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.env/bin/python",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportUndefinedVariable": "none"
+    },
+    "cSpell.ignorePaths": [
+        ".git/objects",
+        "vscode-extension",
+        ".vscode",
+        ".vscode-insiders",
+        "__pycache__",
+        ".env",
+        "bin",
+        "include",
+        "lib",
+        "*.py"
+    ]
+}
