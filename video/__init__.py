@@ -11,7 +11,7 @@ def audio_on_video(title, video_file, start):
 
 	#random video if none provided
 	if not video_file:
-		video_file = video_processor.random_video()
+		video_file = random_video()
 
 	# load the audio
 	audio_clip = AudioFileClip(f"data/mp3_downloads/{title}.mp3")

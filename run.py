@@ -2,7 +2,7 @@ import os
 import re
 import sys
 import argparse
-import reddit_pull, audio, video_processor
+import reddit_pull, audio, video
 
 #import upload
 
@@ -52,7 +52,7 @@ def post_convert(posts, video_file, start):
         audio.tts(mp3, selftext)
 
         #create video
-        video_title = video_processor.audio_on_video(mp3, video_file, start)
+        video_title = audio_on_video(mp3, video_file, start)
 
         #delete mp3
         os.remove(f"data/audio/{mp3}.mp3")
@@ -69,7 +69,7 @@ def main():
     
     posts = reddit_pull.reddit_main(args[0], args[1])  
 
-    video = post_convert(posts, args[2], args[3])
+    video_object = post_convert(posts, args[2], args[3])
 
 
     
