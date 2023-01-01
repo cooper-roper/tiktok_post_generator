@@ -1,22 +1,26 @@
-from gtts import gTTS
 import re
 import os
+import sys
+from gtts import gTTS
 
-def tts(title, selftext):
 
-	print(f"Converting \"{title}\" to mp3")
+language = 'en'
+
+
+def tts(title, contents):
+	print(f"Converting post \"{title}\" to TTS .mp3 file")
   
-	language = 'en'
-
-	selftext = title + ". " + selftext
-
-	re.sub(r'http\S+', '', selftext)
-
-	selftext = selftext.replace("_", " ")
+	# Parse the text into a format ready for turning into an audio file
+	contents = f"{title}. {contents}"
+	re.sub(r'http\S+', '', contents)
+	contents = contents.replace("_", " ")
 	  
-	myobj = gTTS(text=selftext, lang=language, slow=False)
-	
-	myobj.save(f"{os.getcwd()}/data/audio/{title}.mp3")
-
-	print("Success\n")
+	# Convert sanitized text to TTS object & save to an audio file
+	tts_obj = gTTS(text=contents, lang=language, slow=False)
+	try:
+		tts_obj.save(f"{os.getcwd()}/data/audio/{title}.mp3")
+		print("Success\n")
+	except Exception as e:
+		print(f"Failed to save .mp3 for Reddit post. Error information:\n{e}")
+		sys.exit(1)
 
