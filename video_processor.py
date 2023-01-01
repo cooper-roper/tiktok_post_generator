@@ -3,7 +3,6 @@ from moviepy.video.tools.subtitles import SubtitlesClip
 import pvleopard
 from typing import *
 import os, random
-from dotenv import load_dotenv
 
 
 def audio_on_video(title, video_file, start):

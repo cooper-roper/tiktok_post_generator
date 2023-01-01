@@ -1,0 +1,1 @@
+dotenv_path = '.env/vars.env'
