@@ -1,7 +1,7 @@
 import os
 import argparse
 import re
-import reddit_pull, text_to_speech, social_media_poster, video_processor
+import reddit_pull, audio, video_processor
 
 #import upload
 
@@ -43,13 +43,13 @@ def post_convert(posts, video_file, start):
         mp3 = re.sub(r'\W+', '', mp3)
     
         #create mp3 file
-        text_to_speech.tts(mp3, selftext)
+        audio.tts(mp3, selftext)
 
         #create video
         video_title = video_processor.audio_on_video(mp3, video_file, start)
 
         #delete mp3
-        os.remove(f"data/mp3_downloads/{mp3}.mp3")
+        os.remove(f"data/audio/{mp3}.mp3")
         os.remove(f"data/subtitles/{mp3}.srt")
 
         #upload.run(video_title)

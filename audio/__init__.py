@@ -13,9 +13,9 @@ def tts(title, selftext):
 
 	selftext = selftext.replace("_", " ")
 	  
-	myobj = gTTS(text= selftext, lang=language, slow=False)
+	myobj = gTTS(text=selftext, lang=language, slow=False)
 	  
-	myobj.save(f"data/mp3_downloads/{title}.mp3")
+	myobj.save(f"data/audio/{title}.mp3")
 
 	print("Success\n")
 
