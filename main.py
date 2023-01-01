@@ -52,7 +52,7 @@ def post_convert(posts, video_file, start):
         os.remove(f"data/mp3_downloads/{mp3}.mp3")
         os.remove(f"data/subtitles/{mp3}.srt")
 
-        #upload.run(f"data/final_video/{video_title}.mp4")
+        #upload.run(video_title)
 
         
 
