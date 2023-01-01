@@ -1,11 +1,10 @@
 # Project level paths to ignore 
-.env
-bin
+.env/
+bin/
+include/
 setup_notes.txt
-mp3_downloads/*
-subtitles/*
-videos/*
-final_videos/*
+*.mp4
+*.srt
 
 
 # Byte-compiled / optimized / DLL files
