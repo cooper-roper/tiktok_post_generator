@@ -35,7 +35,7 @@ def audio_on_video(title, video_file, start):
 	final_clip = CompositeVideoClip([clipped, subtitles.set_position(('center'))])
 
 	#create video
-	final_clip.write_videofile(f"data/final_video/{title}.mp4", 
+	final_clip.write_videofile(f"data/final_videos/{title}.mp4", 
                      codec='libx264', 
                      audio_codec='aac', 
                      temp_audiofile='temp-audio.m4a', 
