@@ -27,6 +27,8 @@ pip install -r requirements.txt
 Command Arguments:
 
 ```text
+$ run.py
+
 -r      --subreddits    Subreddits to be used
 -l      --limit         How many posts per subreddit
 -v      --video-file    Target video file
