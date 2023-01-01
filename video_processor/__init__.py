@@ -47,7 +47,7 @@ def subtitle_handler(audio_clip, size):
 
 	#generating closed caption file (srt file)
 	leopard = pvleopard.create(access_key=os.getenv('LEOPARD_ACCESS_KEY'))
-	transcript, words = leopard.process_file(f"data/mp3_downloads/{audio_clip}.mp3")
+	transcript, words = leopard.process_file(f"data/audio/{audio_clip}.mp3")
 
 	with open(f'data/subtitles/{audio_clip}.srt', 'w') as f:
 		f.write(to_srt(words))

@@ -1,6 +1,11 @@
 import os
+import sys
 import praw
 from dotenv import load_dotenv
+
+# Import from parent directory
+# https://stackoverflow.com/a/30536516
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from settings import dotenv_path
 
 # returns a  praw.Reddit object
