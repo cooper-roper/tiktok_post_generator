@@ -1,3 +1,19 @@
+# Project level paths to ignore 
+.env/
+bin/
+include/
+setup_notes.txt
+
+## Media formats
+*.mp4
+*.mov
+*.mkv
+*.srt
+*.mp3
+*.m4a
+*.wav
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
