@@ -1,7 +1,7 @@
 import re
 import os
 import sys
-from pyttsx3
+import pyttsx3
 
 
 language = 'en'
