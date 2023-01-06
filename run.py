@@ -36,7 +36,15 @@ def input_handler():
     
 
 def post_convert(posts, video_file, start, keep=False):
+    f = open("data/posts.txt", "r+")
     for post in posts:
+        #check to see if post has been created already
+        content = f.read()
+        if post.id in content:
+            print(f"Found duplicate: {post.title}")
+            continue
+
+
         # Title and body of post
         mp3 = str(post.title)
         selftext = str(post.selftext)
@@ -56,8 +64,9 @@ def post_convert(posts, video_file, start, keep=False):
             os.remove(f"data/audio/{mp3}.mp3")
             os.remove(f"data/subtitles/{mp3}.srt")
 
+        f.write(f"{post.id} ")
         #upload.run(video_title)
-
+    f.close()
 
 if __name__ == '__main__':
     args         = input_handler()
