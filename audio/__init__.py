@@ -21,7 +21,7 @@ def tts(title, contents):
 
 	# replace string and ignore casing
 	compiled = re.compile(re.escape(subs), re.IGNORECASE)
-	contents = compited.sub(replace, contents)
+	contents = compiled.sub(replace, contents)
 
 	contents = contents.replace("_", " ")
 

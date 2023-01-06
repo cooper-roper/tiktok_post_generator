@@ -10,6 +10,12 @@ Pull Reddit Posts, convert to captions, lay over video clips
 $ brew install ImageMagick
 ```
 
+- If on Ubuntu, it's reccomended to install `libespeak`
+
+```bash
+$ sudo apt install libespeak-dev
+```
+ 
 - Initialize Python v3.10 Virtual Environment
 
 ```bash
